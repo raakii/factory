@@ -3,23 +3,23 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class DictionaryCracker  {
-    public static void main(String[] args)  {
-        String realPwd;
+class DictionaryCracker implements Cracker  {
+    public void CrackPassword(User user)  {
         int count = 0;
         try {
-            File myFile = new File("file.txt");
+            File myFile = new File("dico2.txt");
             Scanner myReader = new Scanner(myFile);
             while (myReader.hasNextLine()) {
                 String password = myReader.nextLine();
+                System.out.println(password);
                 count++;
-                if(realPwd.equals(password)) {
-                    System.out.println("Password hacked successfully in " + count + "attempts");
+                if(user.authentificate(password)) {
+                    System.out.println("Password hacked successfully in " + count + " attempts : " + password);
+                    myReader.close();
+                    return;
                 }
             }
-            if(myReader.hasNextLine()) {
-                System.out.println("Password not foud");
-            }
+            System.out.println("Password not foud");
             myReader.close();
         }
         catch (FileNotFoundException e) {
