@@ -1,22 +1,22 @@
-// Java program for the above approach
+
 import java.util.*;
 class BruteForceAttack
 {
  
-// Function to generate permutations of
-// at most X elements from array arr[]
-static void permutations(int X, String[] arr)
-{
-    String[] ml = arr;
-    int attempts=0, count = ml.length;
-    String realPwd, String pwd = "";
+class BruteForceCracker implements Cracker {
 
-    System.out.println("Enter a password");
-            Scanner sc = new Scanner(System.in);
-            realPwd = sc.nextLine();
-   
+    public void CrackPassword(User user){
+      // Given array
+    String []arr = { "a", "b", "c","d","e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v","w", "x", "y", "z",
+                   "1", "2", "3", "4", "5","6", "7", "9", "0"};
+      String[] ml = arr;
+    // Given X
+    int X = 12;  
+    int attempts=0, count = ml.length;
+    String pwd = "";
+
     // Traverse all possible lengths
-    for(int z = 0; z < X - 1; z++)
+    for(int z = 4; z < X - 1; z++)
     {
          
         // Stores all combinations
@@ -43,9 +43,9 @@ static void permutations(int X, String[] arr)
             System.out.println(tmp.get(i) + " ");
             attempts++;
             pwd = tmp.get(i);
-             if(pwd.equals(realPwd))
+             if(user.authentificate(pwd))
                     {
-                        System.out.println("Password suucessfully hacked in " +  attempts + " attempts  ! :" + realPwd);
+                        System.out.println("Password suucessfully hacked in " +  attempts + " attempts  ! :" + pwd);
                         return;
                     }
         }
@@ -55,18 +55,4 @@ static void permutations(int X, String[] arr)
         ml = tmp.toArray(new String[tmp.size()]);;
     }
 }
- 
-// Driver Code
-public static void main(String[] args)
-{
-     
-    // Given array
-    String []arr = { "a", "b", "c","d","e"};
-     
-    // Given X
-    int X = 5;     
-    permutations(X, arr);  
 }
-}
- 
-// This code is contributed by shikhasingrajput
